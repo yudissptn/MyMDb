@@ -6,45 +6,57 @@ import {
     ScrollView,
     Dimensions
 } from 'react-native';
-import { Card, CardItem, Body, Left, Content, ListItem, Spinner, Text, Icon } from 'native-base'
+import { Card, CardItem, Body, Left, Content, ListItem, Spinner, Text, Icon, Button } from 'native-base'
 import Swiper from 'react-native-swiper'
+import { connect } from 'react-redux'
+import {
+    addMovieAction, fetchMovieAction2, fetchSuccessAction,
+    fetchPopularMovie, fetchMovieGenre, fetchGenreList
+} from '../components/redux/action'
 
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
 
-const GenreButton = ({ data }) => {
+const GenreButton = ({ genreData, onFetchMovies, nav }) => {
+
+    let navDispatch = (genreId) => {
+        onFetchMovies(Number(genreId));
+        nav.navigate('ListDetail');
+    }
 
     let listData = () => {
-        return data ? data.map((list, key) => {
+        return genreData ? genreData.map((list, key) => {
             return (
-                <Card style={{ width: 150, marginRight: 5, backgroundColor: '#292d33', borderRadius: 5, padding: 5 }}>
-                    <View style={{ height: 180 }}>
-                        <Image
-                            style={{ height: 180 }}
-                            source={{ uri: 'https://image.tmdb.org/t/p/w154' + list.poster_path }}
-                        />
-                    </View>
-                    <Text style={{ color: 'white' }}>{list.title}</Text>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Icon type="MaterialIcons" name="star" style={{ color: '#fae13c', fontSize: 15 }} />
-                        <Text style={{ color: '#a8a8a8', fontSize: 13 }}>{list.vote_average}</Text>
-                    </View>
-                </Card>
+                <Button style={{ width: 150, marginTop: 10 }} light onPress={() => { navDispatch(list.id) }}><Text>{list.name}</Text></Button>
             )
         }) :
             <Spinner color='blue' />
     }
     return (
-        <Content>
-            <View>
-                <ScrollView horizontal scrollEventThrottle={10}>
-                    {listData()}
-                </ScrollView>
-            </View>
-        </Content>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', flexWrap: 'wrap' }}>
+            {listData()}
+        </View>
     )
 }
 
 
+const mapStateToProps = state => {
+    return {
+        genreData: state ? state.genreList : [],
+    };
+};
 
-export default GenreButton
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchMovies: (genre) => {
+            dispatch(fetchMovieGenre(genre));
+        },
+    }
+}
+
+
+const GenreButtonContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(GenreButton);
+export default GenreButtonContainer;

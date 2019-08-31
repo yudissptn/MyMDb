@@ -1,8 +1,4 @@
-import { dateNow } from '../../commonFunc'
 
-
-const getDate = new Date();
-const currentDate = dateNow(getDate);
 
 const popularMovie = 'https://api.themoviedb.org/3/discover/movie?api_key=ab953ab4e46ff436e67d4863d6c24715&sort_by=vote_average.desc&vote_count.gte=10000'
 const urlMovies = 'https://api.themoviedb.org/3/trending/all/week?api_key=ab953ab4e46ff436e67d4863d6c24715'

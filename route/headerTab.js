@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Tab, Tabs, ScrollableTab, Body, Title, Right } from 'native-base';
+import { Container, Header, Tab, Tabs, ScrollableTab, Body, Title, Right, Button } from 'native-base';
 
 import Tab1 from '../screen/tab1';
 import Tab2 from '../screen/tab2';
@@ -20,7 +20,7 @@ export default class TabsScrollableExample extends Component {
                         <Tab1 />
                     </Tab>
                     <Tab heading="Recommendations">
-                        <Tab2 />
+                        <Tab2 navigation={this.props.navigation} />
                     </Tab>
                     <Tab heading="Favourite">
                         <Tab3 />

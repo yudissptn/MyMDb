@@ -45,7 +45,7 @@ function* fetchPopularMovies() {
 function* fetchGenreLists() {
     try {
         const receivedMovies = yield Api.getListGenreApi();
-        yield put({ type: FETCH_SUCCEEDED_GENRE_LIST, receivedMovies: receivedMovies.results });
+        yield put({ type: FETCH_SUCCEEDED_GENRE_LIST, receivedMovies: receivedMovies.genres });
     } catch (error) {
         yield put({ type: FETCH_FAILED, error })
     }
@@ -54,7 +54,7 @@ function* fetchGenreLists() {
 export function* watchFetchMovies() {
     yield takeLatest(FETCH_MOVIE, fetchMovies)
     yield takeEvery(FETCH_MOVIE_ACTION, fetchMoviesAction)
-    yield takeEvery(FETCH_MOVIE_GENRE, fetchMoviesGenre)
+    yield takeLatest(FETCH_MOVIE_GENRE, fetchMoviesGenre)
     yield takeEvery(FETCH_MOVIE_POPULAR, fetchPopularMovies)
     yield takeEvery(FETCH_GENRE_LIST, fetchGenreLists)
 }

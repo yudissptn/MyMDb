@@ -3,30 +3,12 @@ import React from 'react';
 import { Button, Text, Icon, Footer, FooterTab } from 'native-base';
 
 import headerTab from './headerTab';
-// import Performance from './containers/Performance';
+import genreList from '../components/genreList'
 
-// const MainNavigator = createStackNavigator(
-//     {
-//         Home: {
-//             screen: Home,
-//             navigationOptions: {
-//                 header: null,
-//             }
-//         },
-//         Create: {
-//             screen: CreateCase,
-//             navigationOptions: {
-//                 title: "Generate Case",
-//             }
-//         },
-//     },
-//     {
-//         initialRouteName: "Home"
-//     }
-// );
 
 const Main = createStackNavigator({
-    Home: { screen: headerTab },
+    Home: headerTab,
+    ListDetail: genreList
 },
     {
         initialRouteName: "Home",
