@@ -1,6 +1,7 @@
 import {
     ADD_MOVIE, FETCH_MOVIE, FETCH_SUCCEEDED, FETCH_FAILED, FETCH_SUCCEEDED_ACTION,
-    FETCH_SUCCEEDED_GENRE, FETCH_SUCCEEDED_POPULAR, FETCH_SUCCEEDED_GENRE_LIST
+    FETCH_SUCCEEDED_GENRE, FETCH_SUCCEEDED_POPULAR, FETCH_SUCCEEDED_GENRE_LIST,
+    FAVORITE_LIST, INSERT_FAVORITE_LIST, DELETE_FAVORITE_LIST
 } from './actionTypes'
 
 defaultState = {
@@ -8,7 +9,8 @@ defaultState = {
     moviesAction: [],
     moviesByGenre: [],
     popularMovies: [],
-    genreList: []
+    genreList: [],
+    favoriteList: []
 }
 
 const movieReducers = (state = defaultState, action) => {
@@ -25,6 +27,10 @@ const movieReducers = (state = defaultState, action) => {
             return { ...state, popularMovies: action.receivedMovies };
         case FETCH_SUCCEEDED_GENRE_LIST:
             return { ...state, genreList: action.receivedMovies };
+        case FAVORITE_LIST:
+            return { ...state, favoriteList: action.payload }
+        case INSERT_FAVORITE_LIST:
+            return { ...state, favoriteList: state.favoriteList.concat(action.payload) }
         case FETCH_FAILED:
             return []
 

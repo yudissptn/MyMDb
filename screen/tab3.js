@@ -5,21 +5,16 @@ import { connect } from 'react-redux'
 import { addMovieAction, fetchMovieAction, fetchPopularMovie, fetchFailedAction } from '../components/redux/action'
 import { Button } from 'react-native'
 import PosterCardList from '../components/posterCardList'
+import DeckList from '../components/deckList'
 
 
-const Tab3 = ({ movies, onFetchMovies }) => {
-
-
-    useEffect(() => {
-        onFetchMovies();
-    }, []);
-
+const Tab3 = ({ favList, onFetchMovies }) => {
 
     return (
         <Container>
-            <PosterCardList
-                data={movies}
-            ></PosterCardList>
+            <DeckList
+                data={favList}
+            ></DeckList>
         </Container>
     )
 }
@@ -27,7 +22,7 @@ const Tab3 = ({ movies, onFetchMovies }) => {
 
 const mapStateToProps = state => {
     return {
-        movies: state ? state.popularMovies : []
+        favList: state ? state.favoriteList : []
     };
 };
 

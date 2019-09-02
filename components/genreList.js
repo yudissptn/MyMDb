@@ -12,6 +12,7 @@ import Swiper from 'react-native-swiper'
 import { withNavigation } from 'react-navigation';
 import DaftarMovieSaga from './daftarMovieSaga'
 import { connect } from 'react-redux'
+import DeckList from './deckList'
 
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
