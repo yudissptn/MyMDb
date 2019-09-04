@@ -2,30 +2,29 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import {
     View,
-    Text,
     FlatList,
     Image,
     Dimensions
 } from 'react-native';
-import { Card, CardItem, Body, Left, Content, ListItem, Spinner, Button, Toast } from 'native-base'
+import { Card, CardItem, Body, Left, Content, ListItem, Spinner, Text, Button, Toast, H2 } from 'native-base'
 import { connect } from 'react-redux'
-import { insertToFavorite } from './redux/action'
+import { insertToFavorite, deleteFavorite } from './redux/action'
 
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
 
-const Daftar = ({ data, onInsertMovie, favMovie }) => {
+const Daftar = ({ data, onDeleteMovie, favMovie }) => {
 
-    let addtoFav = (movies) => {
-        onInsertMovie(movies);
+    let deleteMovie = (movies) => {
+        onDeleteMovie(movies);
         Toast.show({
-            text: 'Added to Favorite',
+            text: 'Renoved from list',
             buttonText: 'Okay'
         })
     }
 
     let listData = (data) => {
-        return data ? data.map((list, key) => {
+        return data.length > 0 ? data.map((list, key) => {
             return (
                 <Card style={{ width: screenWidth }}>
                     <CardItem header bordered>
@@ -39,12 +38,12 @@ const Daftar = ({ data, onInsertMovie, favMovie }) => {
                     </CardItem>
                     <CardItem footer bordered button>
                         <Text>{list.release_date}</Text>
-                        <Button onPress={() => favMovie.indexOf(list) !== -1 ? Toast.show({ text: 'Already on the list', buttonText: 'Okay' }) : addtoFav(list)}><Text>Add to Fav</Text></Button>
+                        <Button style={{ color: 'white', width: 100, borderRadius: 5, marginLeft: 200, paddingLeft: 11 }} onPress={() => deleteMovie(list)}><Text>Delete</Text></Button>
                     </CardItem>
                 </Card>
             )
         }) :
-            <Spinner color='blue' />
+            <H2 style={{ margin: 20 }} >Nothing to show</H2>
     }
     return (
         <Content>
@@ -61,8 +60,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInsertMovie: (movies) => {
-            dispatch(insertToFavorite(movies));
+        onDeleteMovie: (movies) => {
+            dispatch(deleteFavorite(movies));
         },
     }
 }

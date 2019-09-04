@@ -31,6 +31,8 @@ const movieReducers = (state = defaultState, action) => {
             return { ...state, favoriteList: action.payload }
         case INSERT_FAVORITE_LIST:
             return { ...state, favoriteList: state.favoriteList.concat(action.payload) }
+        case DELETE_FAVORITE_LIST:
+            return { ...state, favoriteList: [...state.favoriteList.filter(e => e.id !== action.payload.id)] }
         case FETCH_FAILED:
             return []
 

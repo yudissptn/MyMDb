@@ -12,9 +12,9 @@ const Tab3 = ({ favList, onFetchMovies }) => {
 
     return (
         <Container>
-            <DeckList
+            <DaftarMovieSaga
                 data={favList}
-            ></DeckList>
+            ></DaftarMovieSaga>
         </Container>
     )
 }

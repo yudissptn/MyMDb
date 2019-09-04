@@ -1,6 +1,6 @@
 import {
     ADD_MOVIE, FETCH_MOVIE, FETCH_SUCCEEDED, FETCH_FAILED, FETCH_MOVIE_ACTION, FETCH_MOVIE_GENRE,
-    FETCH_MOVIE_POPULAR, FETCH_GENRE_LIST, INSERT_FAVORITE_LIST
+    FETCH_MOVIE_POPULAR, FETCH_GENRE_LIST, INSERT_FAVORITE_LIST, DELETE_FAVORITE_LIST
 } from './actionTypes'
 
 
@@ -62,6 +62,13 @@ export const fetchFailedAction = (failed) => {
 export const insertToFavorite = (payload) => {
     return {
         type: INSERT_FAVORITE_LIST,
+        payload
+    }
+}
+
+export const deleteFavorite = (payload) => {
+    return {
+        type: DELETE_FAVORITE_LIST,
         payload
     }
 }

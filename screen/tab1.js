@@ -26,7 +26,7 @@ const Tab1 = ({ movies, onFetchMovies, onFetchTopRatedMovies, onFetchGenreList }
         return movies ? movies.map((list, key) => {
             return (
                 <View style={{ flex: 1, width: 500 }}>
-                    <View style={{ flex: 1, width: 500 }}>
+                    <View style={{ flex: 1, width: 500 }} >
                         <Image
                             style={{ height: 260, width: 500, flex: 1 }}
                             source={{ uri: 'https://image.tmdb.org/t/p/w300' + list.backdrop_path }}

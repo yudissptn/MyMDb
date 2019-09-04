@@ -29,7 +29,7 @@ const GenreList = ({ listMovies, navigation }) => {
                 </Body>
                 <Right />
             </Header>
-            <DaftarMovieSaga data={listMovies} />
+            <DeckList data={listMovies} />
         </Container >
     )
 }

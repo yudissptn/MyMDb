@@ -34,7 +34,6 @@ function* getMoviesActionApi() {
 };
 
 function* getMoviesGenreApi(genre) {
-    alert(genre)
     const response = yield fetch(`https://api.themoviedb.org/3/discover/movie?api_key=ab953ab4e46ff436e67d4863d6c24715&language=en-US&page=1&primary_release_year=2019&with_genres=${genre}`,
         {
             method: 'GET',
