@@ -5,21 +5,24 @@ import {
     Button,
     ToastAndroid,
     FlatList,
+    ImageBackground,
     Image
 } from 'react-native';
-import { Container, Header, Left, Body, Right, Title, Spinner, Content, Card, CardItem, Text, H2 } from 'native-base';
+import { Container, Header, Left, Body, Right, Title, Spinner, Content, Card, CardItem, Text, H2, Icon } from 'native-base';
 import Swiper from 'react-native-swiper'
+import AddButton from '../components/addButton'
 
 import { connect } from 'react-redux'
-import { addMovieAction, fetchMovieAction2, fetchPopularMovie, fetchGenreList } from '../components/redux/action'
+import { addMovieAction, fetchMovieAction2, fetchTopRatedMovie, fetchGenreList, fetchPopularList } from '../components/redux/action'
 
 
-const Tab1 = ({ movies, onFetchMovies, onFetchTopRatedMovies, onFetchGenreList }) => {
+const Tab1 = ({ movies, popMovies, onFetchMovies, onFetchTopRatedMovies, onFetchGenreList, onFetchPopular }) => {
 
     useEffect(() => {
         onFetchMovies();
         onFetchTopRatedMovies();
         onFetchGenreList();
+        onFetchPopular();
     }, []);
 
     let swiperList = () => {
@@ -27,10 +30,12 @@ const Tab1 = ({ movies, onFetchMovies, onFetchTopRatedMovies, onFetchGenreList }
             return (
                 <View style={{ flex: 1, width: 500 }}>
                     <View style={{ flex: 1, width: 500 }} >
-                        <Image
-                            style={{ height: 260, width: 500, flex: 1 }}
+                        <ImageBackground
+                            style={{ height: 200, width: 500, flex: 1 }}
                             source={{ uri: 'https://image.tmdb.org/t/p/w300' + list.backdrop_path }}
-                        />
+                        >
+                        <AddButton movieDetail={list} fromLeft={0}/>
+                        </ImageBackground>
                     </View>
                     <View style={{ flex: 0.3, width: 100, height: 140, zIndex: 3, position: 'relative', bottom: 130, left: 10 }}>
                         <Image
@@ -54,14 +59,18 @@ const Tab1 = ({ movies, onFetchMovies, onFetchTopRatedMovies, onFetchGenreList }
                 <Swiper autoplay={true} height={300} showsPagination={false}>
                     {swiperList()}
                 </Swiper>
-                <H2>Top Rated Movies</H2>
+                <H2>Most Popular Movies</H2>
+                {popMovies? 
                 <View style={{ flex: 1, width: 500 }}>
-                    <Image
-                        style={{ height: 260, width: 500, flex: 1 }}
-                        source={{ uri: 'https://image.tmdb.org/t/p/w300/vVpEOvdxVBP2aV166j5Xlvb5Cdc.jpg' }}
-                    />
-                    <Text>John Wick: Chapter 3 – Parabellum</Text>
+                    <ImageBackground
+                        style={{ height: 200, width: 500, flex: 1 }}
+                        source={{ uri: 'https://image.tmdb.org/t/p/w300' + popMovies.backdrop_path }}
+                    >
+                    <AddButton movieDetail={popMovies} fromLeft={0}/>
+                    </ImageBackground>
+                    <Text>{popMovies.title}</Text>
                 </View>
+                : <Spinner color='blue' />}
                 <H2 style={{ marginTop: 20 }}>Most Popular Movies</H2>
                 <View style={{ flex: 1, width: 500 }}>
                     <Image
@@ -78,7 +87,8 @@ const Tab1 = ({ movies, onFetchMovies, onFetchTopRatedMovies, onFetchGenreList }
 
 const mapStateToProps = state => {
     return {
-        movies: state ? state.moviesAction : []
+        movies: state ? state.moviesAction : [],
+        popMovies: state ? state.popularMovies[0] : []
     };
 };
 
@@ -87,12 +97,16 @@ const mapDispatchToProps = dispatch => {
         onFetchMovies: () => {
             dispatch(fetchMovieAction2());
         },
+        onFetchPopular: () => {
+            dispatch(fetchPopularList());
+        },
         onFetchTopRatedMovies: () => {
-            dispatch(fetchPopularMovie());
+            dispatch(fetchTopRatedMovie());
         },
         onFetchGenreList: () => {
             dispatch(fetchGenreList());
         }
+
     }
 }
 

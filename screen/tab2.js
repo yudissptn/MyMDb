@@ -35,7 +35,7 @@ const Tab2 = ({ movies, topRated, navigation }) => {
 const mapStateToProps = state => {
     return {
         movies: state ? state.moviesByGenre : [],
-        topRated: state ? state.popularMovies : [],
+        topRated: state ? state.topRatedMovies : [],
     };
 };
 

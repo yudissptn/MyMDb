@@ -6,7 +6,7 @@ import {
     Image,
     Dimensions
 } from 'react-native';
-import { Card, CardItem, Body, Left, Content, ListItem, Spinner, Text, Button, Toast, H2 } from 'native-base'
+import { Card, CardItem, Body, Left, Content, ListItem, Spinner, Text, Button, Toast, H3 } from 'native-base'
 import { connect } from 'react-redux'
 import { insertToFavorite, deleteFavorite } from './redux/action'
 
@@ -28,7 +28,7 @@ const Daftar = ({ data, onDeleteMovie, favMovie }) => {
             return (
                 <Card style={{ width: screenWidth }}>
                     <CardItem header bordered>
-                        <Text>{list.title}</Text>
+                        <H3>{list.title}</H3>
                     </CardItem>
                     <CardItem cardBody>
                         <Image
@@ -38,12 +38,12 @@ const Daftar = ({ data, onDeleteMovie, favMovie }) => {
                     </CardItem>
                     <CardItem footer bordered button>
                         <Text>{list.release_date}</Text>
-                        <Button style={{ color: 'white', width: 100, borderRadius: 5, marginLeft: 200, paddingLeft: 11 }} onPress={() => deleteMovie(list)}><Text>Delete</Text></Button>
+                        <Button style={{ color: 'white', width: 100, borderRadius: 5, marginLeft: 200, paddingLeft: 10 }} onPress={() => deleteMovie(list)}><Text>Delete</Text></Button>
                     </CardItem>
                 </Card>
             )
         }) :
-            <H2 style={{ margin: 20 }} >Nothing to show</H2>
+            <H3 style={{ marginLeft: 110, marginTop: 250, color: '#a8a8a8' }} >Add movie to favorite</H3>
     }
     return (
         <Content>

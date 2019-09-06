@@ -40,7 +40,7 @@ const DeckList = ({ listCopy, onInsertMovie, favMovie, data }) => {
     }
 
     let deckData = (movies) => {
-        return movies ? movies.map((list, key) => {
+        return movies.length > 0 ? movies.map((list, key) => {
             return (
                 <View style={{
                     flex: 1,
@@ -53,7 +53,7 @@ const DeckList = ({ listCopy, onInsertMovie, favMovie, data }) => {
                         source={{ uri: 'https://image.tmdb.org/t/p/w300' + list.backdrop_path }}
                         blurRadius={1}>
                         <Image
-                            style={{ height: 160, width: 120, marginLeft: 145, marginTop: 50 }}
+                            style={{ height: 170, width: 120, marginLeft: 145, marginTop: 50 }}
                             source={{ uri: 'https://image.tmdb.org/t/p/w300' + list.poster_path }}
                         />
                     </ImageBackground>
