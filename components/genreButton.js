@@ -21,7 +21,7 @@ const GenreButton = ({ genreData, onFetchMovies, nav }) => {
 
     let navDispatch = (genreId) => {
         onFetchMovies(Number(genreId));
-        nav.navigate('ListDetail');
+        nav.navigate('ListDetail', { genId: genreId });
     }
 
     let listData = () => {

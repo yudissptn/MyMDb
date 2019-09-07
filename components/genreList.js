@@ -17,15 +17,26 @@ import DeckList from './deckList'
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
 
-const GenreList = ({ listMovies, navigation }) => {
+const GenreList = ({ genTitle, listMovies, navigation, genreData }) => {
+
+    let headTitle = () => {
+        let idGen = navigation.getParam('genId')
+        genreData ? genreData.forEach((list, key) => {
+            list.id == idGen ? genTitle = list.name : null;
+        }) : null
+        return <Title >{genTitle + ' Movies'}</Title>
+    }
 
     return (
         <Container>
-            <Header hasTabs >
-                <Body>
+            <Header>
+                <Left>
                     <TouchableHighlight onPress={() => navigation.goBack()} underlayColor="#FB8C00">
                         <Icon type="MaterialIcons" name="arrow-back" style={{ fontSize: 30, color: 'white' }} />
                     </TouchableHighlight>
+                </Left>
+                <Body>
+                    {headTitle()}
                 </Body>
                 <Right />
             </Header>
@@ -37,6 +48,7 @@ const GenreList = ({ listMovies, navigation }) => {
 const mapStateToProps = state => {
     return {
         listMovies: state ? state.moviesByGenre : [],
+        genreData: state ? state.genreList : [],
     };
 };
 

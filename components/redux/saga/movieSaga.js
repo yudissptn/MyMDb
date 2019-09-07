@@ -1,7 +1,8 @@
 import {
     ADD_MOVIE, FETCH_MOVIE, FETCH_SUCCEEDED, FETCH_SUCCEEDED_GENRE, FETCH_FAILED, FETCH_MOVIE_ACTION,
     FETCH_SUCCEEDED_ACTION, FETCH_MOVIE_GENRE, FETCH_MOVIE_TOP_RATED, FETCH_SUCCEEDED_TOP_RATED, FETCH_GENRE_LIST,
-    FETCH_SUCCEEDED_GENRE_LIST, FETCH_SUCCEEDED_POPULAR, FETCH_MOVIE_POPULAR
+    FETCH_SUCCEEDED_GENRE_LIST, FETCH_SUCCEEDED_POPULAR, FETCH_MOVIE_POPULAR, FETCH_SUCCEEDED_YEAR_TOP,
+    FETCH_YEAR_TOP
 } from '../actionTypes'
 import { put, takeLatest, takeEvery } from 'redux-saga/effects'
 import { Api } from './api'
@@ -60,9 +61,19 @@ function* fetchPopularLists() {
     }
 }
 
+function* fetchYearTopLists() {
+    try {
+        const receivedMovies = yield Api.getThisYearTopApi();
+        yield put({ type: FETCH_SUCCEEDED_YEAR_TOP, receivedMovies: receivedMovies.results });
+    } catch (error) {
+        yield put({ type: FETCH_FAILED, error })
+    }
+}
+
 export function* watchFetchMovies() {
     yield takeLatest(FETCH_MOVIE, fetchMovies)
-    yield takeEvery(FETCH_MOVIE_ACTION, fetchMoviesAction)
+    yield takeEvery(FETCH_MOVIE_ACTION, fetchYearTopLists)
+    yield takeEvery(FETCH_YEAR_TOP, fetchMoviesAction)
     yield takeLatest(FETCH_MOVIE_GENRE, fetchMoviesGenre)
     yield takeEvery(FETCH_MOVIE_TOP_RATED, fetchTopRatedMovies)
     yield takeEvery(FETCH_GENRE_LIST, fetchGenreLists)

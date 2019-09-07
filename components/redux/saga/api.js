@@ -1,4 +1,5 @@
 
+const thisYearTop = 'https://api.themoviedb.org/3/discover/movie?api_key=ab953ab4e46ff436e67d4863d6c24715&primary_release_year=2019&sort_by=vote_average.desc&vote_count.gte=1000'
 const popular = 'https://api.themoviedb.org/3/discover/movie?api_key=ab953ab4e46ff436e67d4863d6c24715&sort_by=popularity.desc'
 const topRated = 'https://api.themoviedb.org/3/discover/movie?api_key=ab953ab4e46ff436e67d4863d6c24715&sort_by=vote_average.desc&vote_count.gte=10000'
 const urlMovies = 'https://api.themoviedb.org/3/trending/all/week?api_key=ab953ab4e46ff436e67d4863d6c24715'
@@ -89,12 +90,27 @@ function* getPopularApi() {
     return movies;
 };
 
+function* getThisYearTopApi() {
+    const response = yield fetch(thisYearTop,
+        {
+            method: 'GET',
+            headers: {
+                "content-type": "application/json;charset=utf-8",
+                "authorization": "Bearer 367ad6acc7c5e96a9b80a4e82ceca38b8a90db26"
+            },
+        });
+
+    const movies = yield response.status === 200 ? response.json() : []
+    return movies;
+};
+
 export const Api = {
     getMoviesApi,
     getMoviesActionApi,
     getMoviesGenreApi,
     getMoviesTopRatedApi,
     getListGenreApi,
-    getPopularApi
+    getPopularApi,
+    getThisYearTopApi
 }
 

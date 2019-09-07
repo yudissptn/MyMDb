@@ -1,6 +1,7 @@
 import {
     ADD_MOVIE, FETCH_MOVIE, FETCH_SUCCEEDED, FETCH_FAILED, FETCH_MOVIE_ACTION, FETCH_MOVIE_GENRE,
-    FETCH_MOVIE_TOP_RATED, FETCH_GENRE_LIST, INSERT_FAVORITE_LIST, DELETE_FAVORITE_LIST, FETCH_MOVIE_POPULAR
+    FETCH_MOVIE_TOP_RATED, FETCH_GENRE_LIST, INSERT_FAVORITE_LIST, DELETE_FAVORITE_LIST, FETCH_MOVIE_POPULAR,
+    FETCH_YEAR_TOP
 } from './actionTypes'
 
 
@@ -47,6 +48,12 @@ export const fetchGenreList = () => {
 export const fetchPopularList = () => {
     return {
         type: FETCH_MOVIE_POPULAR
+    }
+}
+
+export const fetchYearTopList = () => {
+    return {
+        type: FETCH_YEAR_TOP
     }
 }
 

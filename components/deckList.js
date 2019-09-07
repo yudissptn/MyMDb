@@ -16,7 +16,7 @@ import Swiper from 'react-native-swiper'
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
 
-const DeckList = ({ listCopy, onInsertMovie, favMovie, data }) => {
+const DeckList = ({ genreData, listCopy, onInsertMovie, favMovie, data }) => {
 
     let addtoFav = (movies) => {
         onInsertMovie(movies);
@@ -29,7 +29,8 @@ const DeckList = ({ listCopy, onInsertMovie, favMovie, data }) => {
     let staticData = (list) => {
         return (
             <View style={{ bottom: 100, height: 300, width: screenWidth }}>
-                <H2 style={{ marginBottom: 20 }}>{list.title}</H2>
+                <H2 style={{ marginBottom: 10 }}>{list.title}</H2>
+                {genreCategories(list.genre_ids)}
                 <Text numberOfLines={5}>{list.overview}</Text>
                 <View style={{ flexDirection: 'row' }}>
                     <Icon type="MaterialIcons" name="star" style={{ color: '#fae13c', fontSize: 20 }} />
@@ -67,6 +68,14 @@ const DeckList = ({ listCopy, onInsertMovie, favMovie, data }) => {
         listCopy = data[index]
     }
 
+    let genreCategories = (genre) => {
+        let genFilter = [];
+        genreData.forEach((list, key) => {
+            genre.indexOf(list.id) >= 0 ? genFilter.push(list.name) : null
+        })
+        return <Text style={{ color: '#a8a8a8', marginBottom: 10 }}>{genFilter.join(', ')}</Text>
+    }
+
     return (
         <Content>
             <View style={{ flex: 1 }}>
@@ -88,7 +97,8 @@ const DeckList = ({ listCopy, onInsertMovie, favMovie, data }) => {
 
 const mapStateToProps = state => {
     return {
-        favMovie: state ? state.favoriteList : []
+        favMovie: state ? state.favoriteList : [],
+        genreData: state ? state.genreList : []
     };
 };
 
