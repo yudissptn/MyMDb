@@ -19,11 +19,11 @@ This application implement the use of nativebase, react-native-swiper, react-nav
 
 ## Screenshots
 | ------------- | ------------- | 
-| ![alt text](https://github.com/yudissptn/MyMDb/tree/master/screenshots/screenshot1.giv)  | ![alt text](https://github.com/yudissptn/MyMDb/tree/master/screenshots/screenshot2.gif)  |
+| ![alt text](https://github.com/yudissptn/MyMDb/blob/master/screenshots/screenshot1.gif)  | ![alt text](https://github.com/yudissptn/MyMDb/blob/master/screenshots/screenshot2.gif)  |
 
 
 | ------------- | ------------- | 
-| ![alt text](https://github.com/yudissptn/MyMDb/tree/master/screenshots/screenshot3.gif)  | ![alt text](https://github.com/yudissptn/MyMDb/tree/master/screenshots/screenshot4.gif)  | 
+| ![alt text](https://github.com/yudissptn/MyMDb/blob/master/screenshots/screenshot3.gif)  | ![alt text](https://github.com/yudissptn/MyMDb/blob/master/screenshots/screenshot4.gif)  | 
 
 ## Source
 This android App built with React-native and themoviesdb API. 
