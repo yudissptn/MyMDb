@@ -17,5 +17,13 @@ This application implement the use of nativebase, react-native-swiper, react-nav
 * For fetching different API from themoviesdb using redux saga. 
 
 
+## Screenshots
+| ------------- | ------------- | 
+| ![alt text](https://github.com/yudissptn/MyMDb/tree/master/screenshots/screenshot1.giv)  | ![alt text](https://github.com/yudissptn/MyMDb/tree/master/screenshots/screenshot2.gif)  |
+
+
+| ------------- | ------------- | 
+| ![alt text](https://github.com/yudissptn/MyMDb/tree/master/screenshots/screenshot3.gif)  | ![alt text](https://github.com/yudissptn/MyMDb/tree/master/screenshots/screenshot4.gif)  | 
+
 ## Source
 This android App built with React-native and themoviesdb API. 
