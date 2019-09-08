@@ -18,12 +18,12 @@ This application implement the use of nativebase, react-native-swiper, react-nav
 
 
 ## Screenshots
-| Walkthrough  | Home | 
+|   |  | 
 | ------------- | ------------- | 
 | ![alt text](https://github.com/yudissptn/MyMDb/blob/master/screenshots/screenshot1.gif)  | ![alt text](https://github.com/yudissptn/MyMDb/blob/master/screenshots/screenshot2.gif)  |
 
 
-| Walkthrough  | Home | 
+|   |  | 
 | ------------- | ------------- | 
 | ![alt text](https://github.com/yudissptn/MyMDb/blob/master/screenshots/screenshot3.gif)  | ![alt text](https://github.com/yudissptn/MyMDb/blob/master/screenshots/screenshot4.gif)  | 
 
